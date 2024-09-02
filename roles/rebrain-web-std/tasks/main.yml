@@ -1,0 +1,17 @@
+---
+- name: Standart nginx conf
+  block:
+  
+  - name: Change nginx.conf by custnom template
+    become: true
+    template: 
+      dest: /etc/nginx/nginx.conf
+      src: nginx.conf.j2
+    notify: reload nginx
+  
+  - name: Chenge index.html
+    become: true
+    template: 
+      dest: /usr/share/nginx/html/index.html
+      src: index.html.j2
+    notify: reload nginx
